@@ -1,0 +1,30 @@
+
+version: '3.2'
+
+services:
+  mqtt:
+    image: eclipse-mosquitto:2.0.15
+    container_name: mosquitto
+    restart: always
+    network_mode: host
+    volumes:
+      - config:/mosquitto/config
+      - data:/mosquitto/data
+      - log:/mosquitto/log
+
+volumes:
+  config:
+    driver_opts:
+      type: none
+      device: ${PWD}/config
+      o: bind
+  data:
+    driver_opts:
+      type: none
+      device: ${PWD}/data
+      o: bind
+  log:
+    driver_opts:
+      type: none
+      device: ${PWD}/log
+      o: bind
